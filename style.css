@@ -1,0 +1,708 @@
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 0;
+    }
+
+    body {
+      background: #050505;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+
+      /* ANIMAÇÃO 4 — TRANSIÇÃO */
+      opacity: 1;
+      transition: opacity .4s ease;
+    }
+
+    body.saindo {
+      opacity: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p {
+      max-width: 1000px;
+    }
+
+
+    /* =========================
+       CURSOR
+    ========================= */
+
+    .cursor {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition:
+    transform .2s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.cursor.ativo {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(
+    135deg,
+    #00aaff 0%,
+    #ffffff 50%,
+    #e00000 100%
+  );
+
+  box-shadow:
+    0 0 8px #00aaff,
+    0 0 16px #e00000;
+
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      padding: 0 4vw;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      z-index: 1000;
+      mix-blend-mode: difference;
+    }
+
+    .logotipo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 35px;
+    }
+
+    nav a {
+      position: relative;
+      padding: 10px 0;
+
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      transition: opacity .3s ease;
+    }
+
+    nav a::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      width: 0;
+      height: 2px;
+
+      background: #fff;
+
+      transition: width .3s ease;
+    }
+
+    nav a:hover::after,
+    nav a.ativo::after {
+      width: 100%;
+    }
+
+
+    /* =========================
+       SECÇÕES
+    ========================= */
+
+    section {
+      min-height: 100vh;
+      position: relative;
+    }
+
+
+    /* =========================
+       TELA INICIAL
+    ========================= */
+
+    .inicio {
+      height: 100vh;
+      min-height: 100vh;
+
+      display: grid;
+      grid-template-columns: 1.3fr 1.5fr 1.3fr;
+
+      overflow: hidden;
+    }
+
+    .inicio-esquerda {
+      padding: 20px;
+      z-index: 3;
+      align-self: center;
+    }
+
+    .inicio-esquerda p {
+      font-size: 30px;
+    }
+
+    .inicio-esquerda p:first-of-type {
+      color: #ddd;
+      margin-bottom: 5px;
+    }
+
+    .inicio-centro {
+      height: 100vh;
+
+      position: relative;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      overflow: visible;
+    }
+
+    .imagem-messi {
+      position: absolute;
+
+      height: 100vh;
+      width: auto;
+
+      max-width: none;
+      max-height: none;
+
+      left: 50%;
+      bottom: 0;
+
+      transform: translateX(-50%);
+
+      object-fit: contain;
+      z-index: 2;
+
+      /* ANIMAÇÃO 3 — ZOOM */
+      transition: transform .6s ease;
+    }
+
+    .imagem-messi:hover {
+      transform: translateX(-50%) scale(1.03);
+    }
+
+    .inicio-direita {
+      z-index: 3;
+      align-self: center;
+    }
+
+    .inicio-direita p {
+      font-size: 30px;
+    }
+
+
+    /* =========================
+       HISTÓRIA
+    ========================= */
+
+    .historia {
+      padding: 120px 5vw;
+    }
+
+    .historia-titulo {
+      margin-bottom: 70px;
+    }
+
+    .historia-titulo span {
+      color: #888;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .historia-titulo h2 {
+      margin-top: 20px;
+
+      max-width: 900px;
+
+      font-size: clamp(45px, 8vw, 110px);
+      line-height: .9;
+      letter-spacing: -5px;
+    }
+
+    .historia-titulo h2 span {
+      color: #555;
+      font-size: inherit;
+      text-transform: none;
+      letter-spacing: inherit;
+    }
+
+    .historia-imagem {
+      width: 500px;
+      height: 650px;
+
+      background: #111;
+      overflow: hidden;
+    }
+
+    .historia-imagem img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      display: block;
+    }
+
+    .historia-texto {
+      padding: 20px 0;
+    }
+
+    .historia-texto h3 {
+      font-size: 40px;
+      font-weight: 400;
+      margin-bottom: 25px;
+    }
+
+    .historia-texto p {
+      width: 100%;
+
+      color: #999;
+      font-size: 18px;
+      line-height: 1.7;
+
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+
+    /* =========================
+       CONQUISTAS
+    ========================= */
+
+    .subtitulo {
+      font-size: 48px;
+      font-weight: 700;
+      text-align: center;
+      margin: 100px auto 50px;
+
+      background: linear-gradient(90deg, #fff, #777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .conquistas-secao {
+      padding: 120px 5vw;
+    }
+
+    .rotulo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 70px;
+
+      color: #888;
+      font-size: 11px;
+
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .conquistas-titulo {
+      max-width: 900px;
+
+      font-size: clamp(45px, 8vw, 120px);
+      line-height: .9;
+      letter-spacing: -5px;
+    }
+
+    .conquistas-titulo span {
+      color: #555;
+    }
+
+
+    /* =========================
+       BLOCOS DAS CONQUISTAS
+    ========================= */
+
+    .conquista {
+      margin-bottom: 30px;
+      padding: 15px;
+    }
+
+    .conquista-imagem {
+      width: 100%;
+      height: 400px;
+
+      overflow: hidden;
+      object-fit: contain;
+      display: block;
+      background: #111;
+    }
+
+    .conquista-imagem img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      display: block;
+
+      transition: transform .7s ease;
+    }
+
+    .conquista:hover .conquista-imagem img {
+      transform: scale(1.03);
+    }
+
+    .conquista-texto {
+      padding: 25px;
+
+      background: #111;
+      border: 1px solid #222;
+    }
+
+    .conquista-texto h3 {
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+
+    /* =========================
+       BOLA DE OURO
+    ========================= */
+
+    .bola-ouro {
+      width: 100%;
+      max-width: 1200px;
+      margin: 100px auto;
+    }
+
+    .bola-ouro-imagem {
+      width: 100%;
+      height: 750px;
+
+      overflow: hidden;
+    }
+
+    .bola-ouro-imagem img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      display: block;
+    }
+
+    .bola-ouro-texto {
+      width: 100%;
+      padding: 30px 0;
+
+      text-align: justify;
+    }
+
+    .bola-ouro-texto h3 {
+      font-size: 40px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .bola-ouro-texto p {
+      width: 100%;
+
+      color: #999;
+      font-size: 18px;
+      line-height: 1.7;
+
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+
+    /* =========================
+       COPA DO MUNDO
+    ========================= */
+
+    .copa-mundo {
+      width: 100%;
+      max-width: 1200px;
+      margin: 100px auto;
+    }
+
+    .copa-mundo h2 {
+      font-size: 40px;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    .copa-mundo-imagem {
+      width: 100%;
+      height: 750px;
+
+      overflow: hidden;
+    }
+
+    .copa-mundo-imagem img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      display: block;
+    }
+
+    .copa-mundo-texto {
+      width: 100%;
+      padding: 30px 0;
+
+      text-align: justify;
+    }
+
+    .copa-mundo-texto p {
+      width: 100%;
+
+      color: #999;
+      font-size: 18px;
+      line-height: 1.7;
+
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+
+    /* =========================
+       NÚMEROS
+    ========================= */
+
+    .caixa-estatisticas {
+      max-width: 1200px;
+
+      margin: 100px auto;
+      padding: 40px;
+
+      border: 1px solid #222;
+      background: #111;
+    }
+
+    .caixa-estatisticas h2 {
+      font-size: 40px;
+      font-weight: 400;
+
+      margin-bottom: 30px;
+    }
+
+    .caixa-estatisticas div {
+      display: flex;
+      justify-content: space-between;
+
+      padding: 20px 0;
+
+      border-top: 1px solid #333;
+
+      font-size: 18px;
+    }
+
+    .caixa-estatisticas span {
+      color: #888;
+    }
+
+    /* =========================
+       ANIMAÇÃO AO FAZER SCROLL
+    ========================= */
+
+    .revelar {
+    opacity: 0;
+    transform: translateY(80px) scale(0.96);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(.16, 1, .3, 1);
+  }
+
+  .revelar.visivel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+
+    /* =========================
+       RODAPÉ
+    ========================= */
+
+    footer {
+      padding: 40px 5vw;
+
+      display: flex;
+      justify-content: space-between;
+
+      border-top: 1px solid #222;
+
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .inicio {
+        grid-template-columns: 1fr;
+
+        padding: 120px 40px 60px;
+
+        text-align: center;
+      }
+
+      .inicio-esquerda,
+      .inicio-direita {
+        display: none;
+      }
+
+      .inicio-centro {
+        height: 100vh;
+      }
+
+      .imagem-messi {
+        height: 100vh;
+      }
+
+      .historia-imagem {
+        width: 100%;
+        height: 450px;
+      }
+
+      .conquista-imagem {
+        height: 300px;
+      }
+
+      .bola-ouro-imagem,
+      .copa-mundo-imagem {
+        height: 500px;
+      }
+
+    }
+
+
+    /* =========================
+       TELEMÓVEL
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      header {
+        height: 70px;
+        padding: 0 20px;
+      }
+
+      .logotipo {
+        font-size: 17px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .inicio {
+        padding: 80px 20px 30px;
+      }
+
+      .inicio-centro {
+        height: 78vh;
+      }
+
+      .imagem-messi {
+        height: 78vh;
+      }
+
+      .historia,
+      .conquistas-secao {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .historia-titulo h2,
+      .conquistas-titulo {
+        letter-spacing: -3px;
+      }
+
+      .historia-imagem {
+        height: 350px;
+      }
+
+      .historia-texto h3,
+      .bola-ouro-texto h3,
+      .copa-mundo h2 {
+        font-size: 30px;
+      }
+
+      .subtitulo {
+        font-size: 36px;
+      }
+
+      .bola-ouro-imagem,
+      .copa-mundo-imagem {
+        height: 350px;
+      }
+
+      .caixa-estatisticas {
+        margin: 60px 20px;
+        padding: 25px;
+      }
+
+      .caixa-estatisticas div {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+    }
+
+
+    /* =========================
+       ACESSIBILIDADE
+    ========================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+    }
